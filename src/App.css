@@ -1,0 +1,21 @@
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #1F222A;
+}
+
+.cm-editor, .cm-gutters, .cm-activeLineGutter {
+    background-color: #1F222A !important;
+}
+.cm-editor {
+    padding-top: 10px;
+    min-height: 100vh;
+}
+
+.cm-activeLineGutter {
+    color: #fff;
+}
+.active-editor {
+    border-bottom-width: 2px;
+    border-color: oklch(0.673 0.182 276.935);
+}
