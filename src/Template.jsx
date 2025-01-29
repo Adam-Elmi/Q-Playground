@@ -1,63 +1,171 @@
 import { useContext, useState, useEffect, useCallback } from "react";
+import React from "react";
 import { ValueContext } from "./ValueContext";
+import Header from "./sections/Header";
+import Contact from "./sections/Contact";
+import GroupOne from "./groups/group-1";
+import GroupTwo from "./groups/group-2";
+import GroupThree from "./groups/group-3";
 
 export default function Template() {
   const { value1 } = useContext(ValueContext);
   const [catchError, setCatchError] = useState("");
   const [isError, setIsError] = useState(false);
-  const [func, setFunc] = useState(null);
+  const [renderGroupOne, setRenderGroupOne] = useState(null);
+  const [renderGroupTwo, setRenderGroupTwo] = useState(null);
+  const [renderGroupThree, setRenderGroupThree] = useState(null);
+  const [sections, setSections] = useState({});
+  const [memberOne, setMemberOne] = useState([]);
+  const [memberTwo, setMemberTwo] = useState([]);
+  const [memberThree, setMemberThree] = useState([]);
+
+  const [defaultValues, setDefaultValues] = useState({});
+
+  // Template groups
+  const [group, setGroup] = useState({});
 
   useEffect(() => {
     try {
-      if (value1) {
+      const parsedValue = JSON.parse(value1);
+      const properties = parsedValue?.config?.defaultValues || {};
+      const groups = parsedValue?.groups;
+      setDefaultValues({
+        summary: properties.summary,
+        skill: properties.skills,
+        header: properties.header,
+        contact: properties.contact,
+        experience: properties.experience,
+        education: properties.education,
+        languages: properties.languages,
+        projects: properties.projects,
+      });
+      setGroup(groups);
+    } catch (error) {
+      console.error("Error parsing default values:", error.message);
+      setDefaultValues({});
+    }
+  }, [value1]);
+
+  useEffect(() => {
+    try {
+      const parsedValue = JSON.parse(value1);
+      if (parsedValue) {
         setIsError(false);
+        for (const [key, value] of Object.entries(parsedValue)) {
+          // Section property
+          if (key === "sections") {
+            if (value) {
+              value.forEach((prop) => {
+                // Header property
+                if (prop.id === "header") {
+                  setSections((prev) => ({
+                    ...prev,
+                    header: (
+                      <Header
+                        header={prop}
+                        defaultValue={defaultValues.header}
+                      />
+                    ),
+                  }));
+                }
+                // Contact Property
+                if (prop.id === "contact") {
+                  setSections((prev) => ({
+                    ...prev,
+                    contact: <Contact contact={prop} />,
+                  }));
+                }
+              });
+            }
+          }
+          if (key) {
+          }
+        }
       }
     } catch (error) {
       setIsError(true);
       setCatchError(error.message);
     }
-  }, [value1]);
+  }, [value1, defaultValues, group]);
 
-  const keys = useCallback(() => {
+  useEffect(() => {
     try {
-      setIsError(false);
-      sections(JSON.parse(value1));
+      const parsedValue = JSON.parse(value1);
+      if (parsedValue) {
+        for (const [key, value] of Object.entries(parsedValue)) {
+          if (key === "groups") {
+            value.forEach((group) => {
+              if (group.groupId === "group-1") {
+                if (sections) {
+                  const newElements = Object.entries(sections);
+
+                  const uniqueElements = new Set();
+                  for (const [k, v] of newElements) {
+                    if (group.sections.includes(k)) {
+                      uniqueElements.add({ key: k, element: v });
+                    }
+                  }
+                  setMemberOne(
+                    Array.from(uniqueElements).map(({ key, element }) =>
+                      React.cloneElement(element, { key })
+                    )
+                  );
+                }
+              }
+              if (group.groupId === "group-2") {
+                if (sections) {
+                  const newElements = Object.entries(sections);
+
+                  const uniqueElements = new Set();
+                  for (const [k, v] of newElements) {
+                    if (group.sections.includes(k)) {
+                      uniqueElements.add({ key: k, element: v });
+                    }
+                  }
+                  setMemberTwo(
+                    Array.from(uniqueElements).map(({ key, element }) =>
+                      React.cloneElement(element, { key })
+                    )
+                  );
+                }
+              }
+              if (group.groupId === "group-3") {
+                if (sections) {
+                  const newElements = Object.entries(sections);
+
+                  const uniqueElements = new Set();
+                  for (const [k, v] of newElements) {
+                    if (group.sections.includes(k)) {
+                      uniqueElements.add({ key: k, element: v });
+                    }
+                  }
+                  setMemberThree(
+                    Array.from(uniqueElements).map(({ key, element }) =>
+                      React.cloneElement(element, { key })
+                    )
+                  );
+                }
+              }
+            });
+          }
+        }
+      }
     } catch (error) {
-      setIsError(true);
-      setCatchError(error.message);
       console.error(error.message);
     }
-  }, [value1]);
+  }, [sections, group]);
 
   useEffect(() => {
-    if (value1) {
-      setFunc(() => keys);
-    }
-  }, [value1, keys]);
-
-  useEffect(() => {
-    if (func) {
-      func();
-    }
-  }, [func]);
-
-  function sections(obj) {
-    const arrObj = Object.entries(obj);
-    for (const [key, value] of arrObj) {
-      if (key === "sections") {
-        if (Array.isArray(value)) {
-          value.forEach(section => {
-            switch (section.id) {
-              case "header":
-                console.log(section);
-                break;
-            }
-          });
-        }
-        break;
+    try {
+      if(GroupOne && GroupTwo && GroupThree) {
+        setRenderGroupOne(() => <GroupOne members={memberOne} />);
+        setRenderGroupTwo(() => <GroupTwo members={memberTwo} />);
+        setRenderGroupThree(() => <GroupThree members={memberThree} />);
       }
+    } catch (error) {
+      console.error(error.message);
     }
-  }
+  }, [memberOne, memberTwo, memberThree]);
 
   return (
     <div className="md:max-w-[50%] flex-1 min-h-screen bg-white">
@@ -65,7 +173,13 @@ export default function Template() {
         <p className="w-full text-center text-red-400 font-medium font-mono p-2 pt-4">
           {catchError}
         </p>
-      ) : null}
+      ) : (
+        <div id="group-container">
+          {renderGroupOne}
+          {renderGroupTwo}
+          {renderGroupThree}
+        </div>
+      )}
     </div>
   );
 }
