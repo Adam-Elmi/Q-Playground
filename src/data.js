@@ -7,7 +7,8 @@ export const jsonData = `{
       "hiddenSections": ["summary", "languages"],
       "defaultValues": {
         "summary": "Enter your professional summary here.",
-        "skills": ["JavaScript", "Go", "Lua"]
+        "skills": ["JavaScript", "Go", "Lua"],
+        "header": ["Adam Elmi", "Developer"]
       },
       "requiredFields": {
         "experience": ["role", "company", "duration"],
@@ -23,12 +24,33 @@ export const jsonData = `{
         "skills": 10
       }
     },
+    "groups": [
+    {
+      "groupId": "group-1",
+      "sections": ["contact", "summary"]
+    },
+    {
+      "groupId": "group-2",
+      "sections": ["experience", "education"]
+    },
+    {
+      "groupId": "group-3",
+      "sections": ["experience", "education"]
+    }
+  ],
     "styleUrl": "",
     "sections": [
       {
         "id": "header",
+        "title": "Header",
+        "fields": ["name", "title"],
+        "image" : "head-image"
+      },
+      {
+        "id": "contact",
         "title": "Personal Info",
-        "fields": ["name", "title", "email", "phone", "website"]
+        "fields": ["email", "phone", "country", "city", "website"],
+        "icons" : []
       },
       {
         "id": "summary",
