@@ -1,8 +1,11 @@
-import { useContext, useState, useEffect, useCallback } from "react";
+import { useContext, useState, useEffect } from "react";
 import React from "react";
 import { ValueContext } from "./ValueContext";
 import Header from "./sections/Header";
 import Contact from "./sections/Contact";
+import Summary from "./sections/Summary";
+import Experience from "./sections/Experience";
+import Eduction from "./sections/Education";
 import GroupOne from "./groups/group-1";
 import GroupTwo from "./groups/group-2";
 import GroupThree from "./groups/group-3";
@@ -18,10 +21,7 @@ export default function Template() {
   const [memberOne, setMemberOne] = useState([]);
   const [memberTwo, setMemberTwo] = useState([]);
   const [memberThree, setMemberThree] = useState([]);
-
   const [defaultValues, setDefaultValues] = useState({});
-
-  // Template groups
   const [group, setGroup] = useState({});
 
   useEffect(() => {
@@ -73,6 +73,32 @@ export default function Template() {
                   setSections((prev) => ({
                     ...prev,
                     contact: <Contact contact={prop} />,
+                  }));
+                }
+                // Summary Property
+                if (prop.id === "summary") {
+                  setSections((prev) => ({
+                    ...prev,
+                    summary: <Summary summary={prop} />,
+                  }));
+                }
+                // Experience property
+                if (prop.id === "experience") {
+                  setSections((prev) => ({
+                    ...prev,
+                    experience: (
+                      <Experience
+                        experience={prop}
+                        defaultValue={defaultValues.experience}
+                      />
+                    ),
+                  }));
+                }
+                // Education property
+                if(prop.id === "education") {
+                  setSections((prev) => ({
+                    ...prev,
+                    education: <Eduction education={prop} defaultValue={defaultValues.education} />,
                   }));
                 }
               });
@@ -157,7 +183,7 @@ export default function Template() {
 
   useEffect(() => {
     try {
-      if(GroupOne && GroupTwo && GroupThree) {
+      if (GroupOne && GroupTwo && GroupThree) {
         setRenderGroupOne(() => <GroupOne members={memberOne} />);
         setRenderGroupTwo(() => <GroupTwo members={memberTwo} />);
         setRenderGroupThree(() => <GroupThree members={memberThree} />);
