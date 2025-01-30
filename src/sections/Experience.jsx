@@ -20,11 +20,11 @@ export default function Experience({ experience, defaultValue }) {
                 <div id={"company-" + (i + 1) + "wrapper"}>
                   <p id={"company-" + (i + 1)}>{v.company}</p>
                 </div>
-                <div id={"duration-" + (i + 1) + "wrapper"}>
-                  <p id={"duration-" + (i + 1)}>{v.duration}</p>
+                <div id={"ex-date-" + (i + 1) + "wrapper"}>
+                  <p id={"ex-date-" + (i + 1)}>{v.duration}</p>
                 </div>
-                <div id={"description-" + (i + 1) + "wrapper"}>
-                  <p id={"description-" + (i + 1)}>{v.description}</p>
+                <div id={"ex-description-" + (i + 1) + "wrapper"}>
+                  <p id={"ex-description-" + (i + 1)}>{v.description}</p>
                 </div>
               </div>
             ))
