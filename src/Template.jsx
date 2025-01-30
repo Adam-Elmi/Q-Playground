@@ -6,6 +6,9 @@ import Contact from "./sections/Contact";
 import Summary from "./sections/Summary";
 import Experience from "./sections/Experience";
 import Eduction from "./sections/Education";
+import Skills from "./sections/Skills";
+import Languages from "./sections/Languages";
+import Projects from "./sections/Projects";
 import GroupOne from "./groups/group-1";
 import GroupTwo from "./groups/group-2";
 import GroupThree from "./groups/group-3";
@@ -31,7 +34,7 @@ export default function Template() {
       const groups = parsedValue?.groups;
       setDefaultValues({
         summary: properties.summary,
-        skill: properties.skills,
+        skills: properties.skills,
         header: properties.header,
         contact: properties.contact,
         experience: properties.experience,
@@ -95,10 +98,51 @@ export default function Template() {
                   }));
                 }
                 // Education property
-                if(prop.id === "education") {
+                if (prop.id === "education") {
                   setSections((prev) => ({
                     ...prev,
-                    education: <Eduction education={prop} defaultValue={defaultValues.education} />,
+                    education: (
+                      <Eduction
+                        education={prop}
+                        defaultValue={defaultValues.education}
+                      />
+                    ),
+                  }));
+                }
+                // Skills property
+                if (prop.id === "skills") {
+                  setSections((prev) => ({
+                    ...prev,
+                    skills: (
+                      <Skills
+                        skills={prop}
+                        defaultValue={defaultValues.skills}
+                      />
+                    ),
+                  }));
+                }
+                // Languages property
+                if (prop.id === "languages") {
+                  setSections((prev) => ({
+                    ...prev,
+                    languages: (
+                      <Languages
+                        languages={prop}
+                        defaultValue={defaultValues.languages}
+                      />
+                    ),
+                  }));
+                }
+                // Projects property
+                if (prop.id === "projects") {
+                  setSections((prev) => ({
+                    ...prev,
+                    projects: (
+                      <Projects
+                        projects={prop}
+                        defaultValue={defaultValues.projects}
+                      />
+                    ),
                   }));
                 }
               });
