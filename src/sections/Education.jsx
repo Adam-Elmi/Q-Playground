@@ -18,11 +18,11 @@ export default function Eduction({ education, defaultValue }) {
                 <div id={"institution-" + (i + 1) + "wrapper"}>
                   <p id={"institution-" + (i + 1)}>{v.institution}</p>
                 </div>
-                <div id={"year-" + (i + 1) + "wrapper"}>
-                  <p id={"year-" + (i + 1)}>{v.year}</p>
+                <div id={"ed-year-" + (i + 1) + "wrapper"}>
+                  <p id={"ed-year-" + (i + 1)}>{v.year}</p>
                 </div>
-                <div id={"details-" + (i + 1) + "wrapper"}>
-                  <p id={"details-" + (i + 1)}>{v.details}</p>
+                <div id={"ed-details-" + (i + 1) + "wrapper"}>
+                  <p id={"ed-details-" + (i + 1)}>{v.details}</p>
                 </div>
               </div>
             ))
