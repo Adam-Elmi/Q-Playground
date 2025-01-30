@@ -8,7 +8,23 @@ export const jsonData = `{
       "defaultValues": {
         "summary": "Enter your professional summary here.",
         "skills": ["JavaScript", "Go", "Lua"],
-        "header": ["Adam Elmi", "Developer"]
+        "header": ["Adam Elmi", "Developer"],
+        "experience": [
+          {
+            "role": "Web developer",
+            "company": "Google",
+            "duration": "(2023-5-1) - Present",
+            "description": "I have built some website for google"
+          }
+        ],
+        "education": [
+          {
+            "degree": "Computer Science",
+            "institution": "Freecodecamp",
+            "year": "2021",
+            "details": "I learned advanced concepts"
+          }
+        ]
       },
       "requiredFields": {
         "experience": ["role", "company", "duration"],
@@ -27,11 +43,11 @@ export const jsonData = `{
     "groups": [
     {
       "groupId": "group-1",
-      "sections": ["contact", "summary"]
+      "sections": ["contact", "summary", "header"]
     },
     {
       "groupId": "group-2",
-      "sections": ["experience", "education"]
+      "sections": ["", ""]
     },
     {
       "groupId": "group-3",
@@ -61,31 +77,26 @@ export const jsonData = `{
       {
         "id": "experience",
         "title": "Work Experience",
-        "repeat": 3,
         "fields": ["role", "company", "duration", "description"]
       },
       {
         "id": "education",
         "title": "Education",
-        "repeat": 2,
         "fields": ["degree", "institution", "year", "details"]
       },
       {
         "id": "skills",
         "title": "Skills",
-        "repeat": 5,
         "fields": ["skill"]
       },
       {
         "id": "languages",
         "title": "Languages",
-        "repeat": 3,
         "fields": ["language", "proficiency"]
       },
       {
         "id": "projects",
         "title": "Projects",
-        "repeat": 4,
         "fields": ["title", "description", "link"]
       }
     ]
