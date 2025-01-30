@@ -24,7 +24,10 @@ export const jsonData = `{
             "year": "2021",
             "details": "I learned advanced concepts"
           }
-        ]
+        ],
+        "skills": ["Software Engineer", "Web Desiner", "Artist"],
+        "languages": ["Somali", "English", "Arabic"],
+        "projects": ["Quick-Cv", "SomCalendar", "Q-Playground"]
       },
       "requiredFields": {
         "experience": ["role", "company", "duration"],
@@ -92,12 +95,12 @@ export const jsonData = `{
       {
         "id": "languages",
         "title": "Languages",
-        "fields": ["language", "proficiency"]
+        "fields": ["language"]
       },
       {
         "id": "projects",
         "title": "Projects",
-        "fields": ["title", "description", "link"]
+        "fields": ["title", "date",  "description", "link"]
       }
     ]
   }  
