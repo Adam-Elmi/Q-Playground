@@ -1,6 +1,6 @@
 export default function Contact({ contact }) {
     return (
-        <div className={contact.id}>
+        <div id={contact.id}>
             <div id="contact-title">
                 {contact.title}
             </div>
