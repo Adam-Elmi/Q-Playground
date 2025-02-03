@@ -75,14 +75,19 @@ export default function Template() {
                 if (prop.id === "contact") {
                   setSections((prev) => ({
                     ...prev,
-                    contact: <Contact contact={prop} />,
+                    contact: (
+                      <Contact
+                        contact={prop}
+                        defaultValue={defaultValues.contact}
+                      />
+                    ),
                   }));
                 }
                 // Summary Property
                 if (prop.id === "summary") {
                   setSections((prev) => ({
                     ...prev,
-                    summary: <Summary summary={prop} />,
+                    summary: <Summary summary={prop} defaultValue={defaultValues.summary} />,
                   }));
                 }
                 // Experience property
@@ -228,9 +233,9 @@ export default function Template() {
   useEffect(() => {
     try {
       if (GroupOne && GroupTwo && GroupThree) {
-        setRenderGroupOne(() => <GroupOne members={memberOne} />);
-        setRenderGroupTwo(() => <GroupTwo members={memberTwo} />);
-        setRenderGroupThree(() => <GroupThree members={memberThree} />);
+        setRenderGroupOne(<GroupOne members={memberOne} />);
+        setRenderGroupTwo(<GroupTwo members={memberTwo} />);
+        setRenderGroupThree(<GroupThree members={memberThree} />);
       }
     } catch (error) {
       console.error(error.message);
@@ -246,8 +251,10 @@ export default function Template() {
       ) : (
         <div id="group-container">
           {renderGroupOne}
-          {renderGroupTwo}
-          {renderGroupThree}
+          <div id="group-wrapper">
+            {renderGroupTwo}
+            {renderGroupThree}
+          </div>
         </div>
       )}
     </div>
