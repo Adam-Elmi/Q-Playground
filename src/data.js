@@ -6,28 +6,42 @@ export const jsonData = `{
     "config": {
       "hiddenSections": ["summary", "languages"],
       "defaultValues": {
-        "summary": "Enter your professional summary here.",
-        "skills": ["JavaScript", "Go", "Lua"],
-        "header": ["Adam Elmi", "Developer"],
+      "header": ["Adam Elmi", "Software developer"],
+        "summary": ["Enter your professional summary here."],
+         "contact": [
+          {
+            "email": "Adamcade123@gmail.com",
+            "phone": "+252 63 4709061",
+            "address": "Hargeisa, Somaliland",
+            "icons": ["fa-solid fa-phone", "fa-solid fa-envelope", "fa-solid fa-location-dot"]
+          }
+        ] ,
         "experience": [
           {
             "role": "Web developer",
             "company": "Google",
-            "duration": "(2023-5-1) - Present",
+            "duration": "(2023) - Present",
             "description": "I have built some website for google"
           }
         ],
         "education": [
           {
             "degree": "Computer Science",
-            "institution": "Freecodecamp",
-            "year": "2021",
-            "details": "I learned advanced concepts"
+            "institution": "Univerity of Hargeisa",
+            "year": "2020 - 2024",
+            "details": "I learned more about programming"
           }
         ],
-        "skills": ["Software Engineer", "Web Desiner", "Artist"],
-        "languages": ["Somali", "English", "Arabic"],
-        "projects": ["Quick-Cv", "SomCalendar", "Q-Playground"]
+        "skills": ["Software Engineer", "Web Desiner", "Teamwork", "Leadership", "Project Management", "Effective Communication"],
+        "languages": ["Somali", "English", "French"],
+        "projects": [
+          {
+            "title": "Quick-Cv",
+            "data": "2024",
+            "description": "A cv maker",
+            "link": "Qucikcv.com"
+          }
+        ]
       },
       "requiredFields": {
         "experience": ["role", "company", "duration"],
@@ -46,15 +60,15 @@ export const jsonData = `{
     "groups": [
     {
       "groupId": "group-1",
-      "sections": ["contact", "summary", "header"]
+      "sections": ["header"]
     },
     {
       "groupId": "group-2",
-      "sections": ["", ""]
+      "sections": ["contact", "skills", "languages"]
     },
     {
       "groupId": "group-3",
-      "sections": ["experience", "education"]
+      "sections": ["summary", "education"]
     }
   ],
     "styleUrl": "",
